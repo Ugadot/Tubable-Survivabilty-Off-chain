@@ -5,7 +5,6 @@ from scipy.optimize import fsolve
 import math
 import graphviz
 import matplotlib.pyplot as plt
-%matplotlib inline
 DEBUG=True
 
 
@@ -228,8 +227,6 @@ demand_list.append((0, 2, -10, 1))
 demand_list.append((2, 1, -2, 0.5))
 print(demand_list)
 
-**Simple Solution:**
-For each demand, We will add a direct path between the clients, which will satisfy the survivability constraint.
 
 # Direct graph
 def direct_path_solution(demand_list, N, verbose=0):
@@ -259,12 +256,8 @@ final_graph = getAlgoRes(demand_list, graph, S_0)
 #nx.draw_networkx_edge_lables(final_graph , **draw_options)
 
 
-In the above example, we can see that there is signifcant difference in the demands between 2 to 0 and 0 to 1.
-Therefore it is better to satisfy the demand from 1 to 2 via this path, instead of opening a new channel.
-
 printGraph(final_graph)
 
-Generating more complex random example
 
 from random import randint, random, uniform
 
