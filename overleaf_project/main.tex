@@ -16,7 +16,7 @@
 
 
 %% Full title
-\title{\item We are considering 0 fees with regards to the routing path chosen, thus making the deposit amount the only cost metric involved in our algorithm.}
+\title{\item Tunable Survivability on Off-chain network}
 
 %% Shorter title, for use in page header
 \runningtitle{Tunable Survivability on Off-chain network}
@@ -245,7 +245,39 @@ By using the above method, we get that the requirements are sufficed by only 2 d
 \end{center}
 
 
+\newpage
+\section{Simulation Results}
+We ran a simple simulation on our POC algorithm with the following configuration: 
+\begin{enumerate}
+    \item 10 different users ($N = 10$).
+    \item Changing amount of off-chain payment demands ($d \in [1, 35]$).
+    \item We compared our algorithm results to a naive deposit per-demand approach, where we are establishing a payment channel for each demand between 2 users.
+\end{enumerate}
 
+\\\\
+In order to reach more conclusive results, we need to run tests that need more effort in terms of compute and time.\\\\
+
+The results were encouraging as when the number of total demands increased the saving of our algorithm also increased. as seen in figure \ref{fig:results}
+
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=1\linewidth, height=5cm]{exp10(1).png} 
+\caption{Total deposits, our algorithm VS. naive approach}
+\label{fig:total_deposits}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=1\linewidth, height=5cm]{exp11.png}
+\caption{Deposits savings}
+\label{fig:deposits_davings}
+\end{subfigure}
+\caption{Experiments results}
+\label{fig:results}
+\end{figure}
+
+\\
+in figure \ref{fig:total_deposits} We noticed that at the first iterations the total deposits are equal, while at a certain point, when there are enough channels that can be shared, the deposits in our algorithm grows slower.
+
+\newpage
 \section{Further Research}
 There are several area where we think there is a possibility to further investigate this subject.
 \begin{enumerate}
@@ -260,6 +292,7 @@ There are several area where we think there is a possibility to further investig
     \item Exploring other ways to model the payment demand between 2 users.
 \end{enumerate}
 
+\newpage
 \section{Appendix}
 \textbf{Understanding the intuition behind the usage of Gaussian distribution:}\\
 Lets denote a channel $c$ between the users $u$ and $v$ on which there is only one demand: $d_{u,v} \sim \mathcal{N}(2, 0.5) $.\\
